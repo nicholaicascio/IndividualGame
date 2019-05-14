@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 8554098787251128134}
   - component: {fileID: 8554098787251128135}
   - component: {fileID: 8554098787251128128}
+  - component: {fileID: 3743360184510455645}
   m_Layer: 0
   m_Name: BadPhrase
   m_TagString: Phrase
@@ -206,6 +207,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
+--- !u!114 &3743360184510455645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554098787251128129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388c9708cde88744893ad81704b8668d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
 --- !u!1 &8554098788091029579
 GameObject:
   m_ObjectHideFlags: 0

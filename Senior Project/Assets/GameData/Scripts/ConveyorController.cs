@@ -12,10 +12,15 @@ public class ConveyorController : MonoBehaviour
     public GameObject badPhrase;
     public GameObject goodPhrase;
     public GameObject[] phrases;
+    public GameObject[] phrasePos;
+
+    //public Transform goal;
 
     private void Start()
     {
         phrases = new GameObject[10];
+        //phrasePos = new GameObject[10];
+        phrasePos = GameObject.FindGameObjectsWithTag("PhrasePos");
         //Vector3 spawn = new Vector3();
         //spawn = spawnPoint.transform.position;
         //CreatePhrase();
@@ -29,45 +34,47 @@ public class ConveyorController : MonoBehaviour
             elapsed = elapsed % 1f;
             if(phrases[0] != null)
             {
-                MovePhrases();
+                //MovePhrases();
             }
-            CreatePhrase();
+            //CreatePhrase();
         }
     }
 
     void CreatePhrase()
     {
+        //int num = Random.Range(1, 10);
+        //Debug.Log(num);
+        if(phrases[9] != null)
+        {
+            Destroy(phrases[9]);
+        }
+        
+        int i = 8;
+        while (i > 0){
+            if(phrases[i] != null)
+            {
+                phrases[i + 1] = phrases[i];
+            }
+            
+            i--;
+        }
+        phrases[0] = ReturnRandomPhrase();
+    }
+
+    GameObject ReturnRandomPhrase()
+    {
         int num = Random.Range(1, 10);
-        Debug.Log(num);
         if (num <= chanceOfBad)
         {
-            if (count < 10)
-            {
-                phrases[count] = Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                count++;
-            }
-            else
-            {
-                count = 0;
-                Destroy(phrases[10]);
-                phrases[count] = Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                count++;
-            }
+            return Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
-        if(num > chanceOfBad)
+        else if (num > chanceOfBad)
         {
-            if(count < 10)
-            {
-                phrases[count] = Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                count++;
-            }
-            else
-            {
-                count = 0;
-                Destroy(phrases[10]);
-                phrases[count] = Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                count++;
-            }
+            return Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+        }
+        else
+        {
+            return null;
         }
     }
 
@@ -80,7 +87,9 @@ public class ConveyorController : MonoBehaviour
             //Debug.Log(obj);
             if(obj != null)
             {
-                obj.transform.Translate(right * Time.deltaTime);
+                //obj.transform.Translate(right * Time.deltaTime);
+                Phrase phraseControl = obj.GetComponentInChildren<Phrase>();
+                //phraseControl.moveNext(goal);
             }
             
         }

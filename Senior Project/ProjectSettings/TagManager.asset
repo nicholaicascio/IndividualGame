@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Phrase
   - PhraseSpawn
+  - PhrasePos
   layers:
   - Default
   - TransparentFX
