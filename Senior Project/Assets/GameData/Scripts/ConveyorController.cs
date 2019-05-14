@@ -18,9 +18,9 @@ public class ConveyorController : MonoBehaviour
 
     private void Start()
     {
-        phrases = new GameObject[10];
+        phrases = new GameObject[11];
         //phrasePos = new GameObject[10];
-        phrasePos = GameObject.FindGameObjectsWithTag("PhrasePos");
+        //phrasePos = GameObject.FindGameObjectsWithTag("PhrasePos");
         //Vector3 spawn = new Vector3();
         //spawn = spawnPoint.transform.position;
         //CreatePhrase();
@@ -32,11 +32,13 @@ public class ConveyorController : MonoBehaviour
         if (elapsed >= timeBetween)
         {
             elapsed = elapsed % 1f;
-            if(phrases[0] != null)
+            //Debug.Log(Time.time);
+            if (phrases[0] != null)
             {
-                //MovePhrases();
+                //Debug.Log("called MovePhrases");
+                MovePhrases();
             }
-            //CreatePhrase();
+            CreatePhrase();
         }
     }
 
@@ -49,13 +51,14 @@ public class ConveyorController : MonoBehaviour
             Destroy(phrases[9]);
         }
         
-        int i = 8;
-        while (i > 0){
+        int i = 9;
+        while (i >= 0){
+
             if(phrases[i] != null)
             {
+                //Debug.Log("attempting to move phrase through array at index " + i.ToString());
                 phrases[i + 1] = phrases[i];
             }
-            
             i--;
         }
         phrases[0] = ReturnRandomPhrase();
@@ -80,18 +83,22 @@ public class ConveyorController : MonoBehaviour
 
     void MovePhrases()
     {
-        Debug.Log(Time.time);
-        foreach(GameObject obj in phrases)
+        //Debug.Log(Time.time);
+        for (int i = 9; i > 0; i--)
         {
-            Vector3 right = new Vector3(25f, 0, 0);
-            //Debug.Log(obj);
+            GameObject obj = new GameObject();
+            obj = phrases[i];
+            
             if(obj != null)
             {
-                //obj.transform.Translate(right * Time.deltaTime);
+                Debug.Log("tried to move " + i.ToString());
+                //Debug.Log(obj.ToString());
                 Phrase phraseControl = obj.GetComponentInChildren<Phrase>();
-                //phraseControl.moveNext(goal);
+                GameObject goal = new GameObject();
+                goal = phrasePos[i];
+                phraseControl.moveNext(goal.transform);
             }
-            
         }
+        
     }
 }

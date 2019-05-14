@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1e8b26e0392d84cb44bba8264e9661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceOfBad: 5
+  chanceOfBad: 2
   timeBetween: 3
   spawnPoint: {fileID: 1284721837}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
@@ -573,7 +573,17 @@ MonoBehaviour:
   goodPhrase: {fileID: 3270911167537853456, guid: 9e3ee5fba6a1f6c48a9b046fd2d824d1,
     type: 3}
   phrases: []
-  phrasePos: []
+  phrasePos:
+  - {fileID: 1284721837}
+  - {fileID: 435473414}
+  - {fileID: 1482355866}
+  - {fileID: 362093877}
+  - {fileID: 617080769}
+  - {fileID: 1251765013}
+  - {fileID: 319944930}
+  - {fileID: 431312602}
+  - {fileID: 1214048117}
+  - {fileID: 570993921}
 --- !u!1 &883985195
 GameObject:
   m_ObjectHideFlags: 0
