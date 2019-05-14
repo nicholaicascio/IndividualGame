@@ -5,17 +5,20 @@ using UnityEngine;
 public class ConveyorController : MonoBehaviour
 {
     float elapsed = 0f;
-    public float chanceOfBad = 5;
+    int count = 0;
+    public int chanceOfBad = 5;
     public float timeBetween = 1f;
     public GameObject spawnPoint;
     public GameObject badPhrase;
     public GameObject goodPhrase;
+    public GameObject[] phrases;
 
     private void Start()
     {
+        phrases = new GameObject[10];
         //Vector3 spawn = new Vector3();
         //spawn = spawnPoint.transform.position;
-        CreatePhrase();
+        //CreatePhrase();
     }
 
     void Update()
@@ -24,8 +27,11 @@ public class ConveyorController : MonoBehaviour
         if (elapsed >= timeBetween)
         {
             elapsed = elapsed % 1f;
-            //CreatePhrase();
-            MovePhrases();
+            if(phrases[0] != null)
+            {
+                MovePhrases();
+            }
+            CreatePhrase();
         }
     }
 
@@ -33,19 +39,50 @@ public class ConveyorController : MonoBehaviour
     {
         int num = Random.Range(1, 10);
         Debug.Log(num);
-        if (num <= 5)
+        if (num <= chanceOfBad)
         {
-            Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity);
+            if (count < 10)
+            {
+                phrases[count] = Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                count++;
+            }
+            else
+            {
+                count = 0;
+                Destroy(phrases[10]);
+                phrases[count] = Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                count++;
+            }
         }
-        if(num > 5)
+        if(num > chanceOfBad)
         {
-            Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity);
+            if(count < 10)
+            {
+                phrases[count] = Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                count++;
+            }
+            else
+            {
+                count = 0;
+                Destroy(phrases[10]);
+                phrases[count] = Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                count++;
+            }
         }
     }
 
     void MovePhrases()
     {
         Debug.Log(Time.time);
-
+        foreach(GameObject obj in phrases)
+        {
+            Vector3 right = new Vector3(25f, 0, 0);
+            //Debug.Log(obj);
+            if(obj != null)
+            {
+                obj.transform.Translate(right * Time.deltaTime);
+            }
+            
+        }
     }
 }
