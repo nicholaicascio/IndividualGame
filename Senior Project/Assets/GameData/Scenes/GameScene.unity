@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chanceOfBad: 2
-  timeBetween: 3
+  timeBetween: 1
   spawnPoint: {fileID: 1284721837}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
     type: 3}

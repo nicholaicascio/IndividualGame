@@ -48,7 +48,7 @@ public class ConveyorController : MonoBehaviour
         //Debug.Log(num);
         if(phrases[9] != null)
         {
-            Destroy(phrases[9]);
+            Destroy(phrases[10]);
         }
         
         int i = 9;
@@ -84,21 +84,18 @@ public class ConveyorController : MonoBehaviour
     void MovePhrases()
     {
         //Debug.Log(Time.time);
-        for (int i = 9; i > 0; i--)
+        for (int i = 9; i >= 0; i--)
         {
-            GameObject obj = new GameObject();
-            obj = phrases[i];
+            //GameObject obj = new GameObject();
+            //obj = phrases[i];
             
-            if(obj != null)
+            if(phrases[i] != null)
             {
-                Debug.Log("tried to move " + i.ToString());
+                //Debug.Log("tried to move " + i.ToString());
                 //Debug.Log(obj.ToString());
-                Phrase phraseControl = obj.GetComponentInChildren<Phrase>();
-                GameObject goal = new GameObject();
-                goal = phrasePos[i];
-                phraseControl.moveNext(goal.transform);
+                Phrase phraseControl = phrases[i].GetComponentInChildren<Phrase>();
+                phraseControl.moveNext(phrasePos[i].transform);
             }
         }
-        
     }
 }
