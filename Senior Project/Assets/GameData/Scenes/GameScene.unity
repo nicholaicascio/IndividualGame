@@ -771,6 +771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1000011472}
+  - component: {fileID: 1000011473}
   m_Layer: 0
   m_Name: WaveController
   m_TagString: Untagged
@@ -792,6 +793,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1000011473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a360e920cb9474d871386636702476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chanceOfBad: 0
+  spawnPoint: {fileID: 911343048}
+  badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
+    type: 3}
+  goodPhrase: {fileID: 3270911167537853456, guid: 9e3ee5fba6a1f6c48a9b046fd2d824d1,
+    type: 3}
+  wave: []
 --- !u!1 &1058336402
 GameObject:
   m_ObjectHideFlags: 0
