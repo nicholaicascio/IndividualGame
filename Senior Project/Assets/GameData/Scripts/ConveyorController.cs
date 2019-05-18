@@ -5,10 +5,9 @@ using UnityEngine;
 public class ConveyorController : MonoBehaviour
 {
     float elapsed = 0f;
-    int count = 0;
+    public int waveSize;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
-    public WaveController waveController;
     public GameObject spawnPoint;
     public GameObject badPhrase;
     public GameObject goodPhrase;
@@ -16,16 +15,10 @@ public class ConveyorController : MonoBehaviour
     public GameObject[] phrasePos;
     public GameObject[] wave;
 
-    //public Transform goal;
-
     private void Start()
     {
         phrases = new GameObject[11];
-        //phrasePos = new GameObject[10];
-        //phrasePos = GameObject.FindGameObjectsWithTag("PhrasePos");
-        //Vector3 spawn = new Vector3();
-        //spawn = spawnPoint.transform.position;
-        //CreatePhrase();
+        createWave(waveSize, 2);
     }
 
     void Update()
@@ -34,50 +27,61 @@ public class ConveyorController : MonoBehaviour
         if (elapsed >= timeBetween)
         {
             elapsed = elapsed % 1f;
-            //Debug.Log(Time.time);
-            if (phrases[0] != null)
+
+            PullPhraseFromWave();
+
+            MovePhrases();
+
+            if (wave[1] != null)
             {
-                //Debug.Log("called MovePhrases");
-                MovePhrases();
+                UpdateWave();
             }
-            CreatePhrase();
         }
     }
 
     void createWave(int size, int badChance)
     {
-        //currentWaveLength = size;
         chanceOfBad = badChance;
         wave = new GameObject[size];
         Debug.Log("this wave size is " + wave.Length.ToString());
         for (int i = 0; i < wave.Length; i++)
         {
-            CreatePhrase();
+            wave[i] = ReturnRandomPhrase();
         }
     }
 
-    void CreatePhrase()
+    void UpdateWave()
     {
-        //int num = Random.Range(1, 10);
-        //Debug.Log(num);
-        if(phrases[9] != null)
+        for (int i = 0; i < (wave.Length - 1); i++)
+        {
+            if (wave[i] == null && wave[i + 1] != null)
+            {
+                wave[i] = wave[i + 1];
+                wave[i + 1] = null;
+            }
+        }
+    }
+
+    void PullPhraseFromWave()
+    {
+        if(phrases[10] != null)
         {
             Destroy(phrases[10]);
         }
-        
-        int i = 9;
-        while (i >= 0){
-
+        for(int i = 9; i >= 0; i--)
+        {
             if(phrases[i] != null)
             {
-                //Debug.Log("attempting to move phrase through array at index " + i.ToString());
                 phrases[i + 1] = phrases[i];
+                phrases[i] = null;
             }
-            i--;
         }
-        //phrases[0] = waveController.nextPhrase();
-        
-        wave[0] = ReturnRandomPhrase();
+
+        if(wave[0] != null)
+        {
+            phrases[0] = wave[0];
+            wave[0] = null;
+        }
     }
 
     GameObject ReturnRandomPhrase()
@@ -99,16 +103,10 @@ public class ConveyorController : MonoBehaviour
 
     void MovePhrases()
     {
-        //Debug.Log(Time.time);
         for (int i = 9; i >= 0; i--)
         {
-            //GameObject obj = new GameObject();
-            //obj = phrases[i];
-            
             if(phrases[i] != null)
             {
-                //Debug.Log("tried to move " + i.ToString());
-                //Debug.Log(obj.ToString());
                 Phrase phraseControl = phrases[i].GetComponentInChildren<Phrase>();
                 phraseControl.moveNext(phrasePos[i].transform);
             }
