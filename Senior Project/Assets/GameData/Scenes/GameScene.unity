@@ -568,7 +568,7 @@ MonoBehaviour:
   chanceOfBad: 2
   timeBetween: 1
   waveController: {fileID: 1000011473}
-  spawnPoint: {fileID: 1284721837}
+  spawnPoint: {fileID: 911343048}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
     type: 3}
   goodPhrase: {fileID: 3270911167537853456, guid: 9e3ee5fba6a1f6c48a9b046fd2d824d1,
@@ -585,6 +585,7 @@ MonoBehaviour:
   - {fileID: 431312602}
   - {fileID: 1214048117}
   - {fileID: 570993921}
+  wave: []
 --- !u!1 &883985195
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chanceOfBad: 0
   currentPhrase: 0
+  currentWaveLength: 0
   spawnPoint: {fileID: 911343048}
   conveyorStart: {fileID: 1284721837}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,

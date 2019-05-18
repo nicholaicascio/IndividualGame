@@ -14,6 +14,7 @@ public class ConveyorController : MonoBehaviour
     public GameObject goodPhrase;
     public GameObject[] phrases;
     public GameObject[] phrasePos;
+    public GameObject[] wave;
 
     //public Transform goal;
 
@@ -43,6 +44,18 @@ public class ConveyorController : MonoBehaviour
         }
     }
 
+    void createWave(int size, int badChance)
+    {
+        //currentWaveLength = size;
+        chanceOfBad = badChance;
+        wave = new GameObject[size];
+        Debug.Log("this wave size is " + wave.Length.ToString());
+        for (int i = 0; i < wave.Length; i++)
+        {
+            CreatePhrase();
+        }
+    }
+
     void CreatePhrase()
     {
         //int num = Random.Range(1, 10);
@@ -62,9 +75,9 @@ public class ConveyorController : MonoBehaviour
             }
             i--;
         }
-        phrases[0] = waveController.nextPhrase();
+        //phrases[0] = waveController.nextPhrase();
         
-        //phrases[0] = ReturnRandomPhrase();
+        wave[0] = ReturnRandomPhrase();
     }
 
     GameObject ReturnRandomPhrase()
