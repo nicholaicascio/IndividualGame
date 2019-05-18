@@ -8,6 +8,7 @@ public class ConveyorController : MonoBehaviour
     int count = 0;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
+    public WaveController waveController;
     public GameObject spawnPoint;
     public GameObject badPhrase;
     public GameObject goodPhrase;
@@ -61,7 +62,9 @@ public class ConveyorController : MonoBehaviour
             }
             i--;
         }
-        phrases[0] = ReturnRandomPhrase();
+        phrases[0] = waveController.nextPhrase();
+        
+        //phrases[0] = ReturnRandomPhrase();
     }
 
     GameObject ReturnRandomPhrase()

@@ -6,7 +6,10 @@ public class WaveController : MonoBehaviour
 {
     //public int waveSize;
     public int chanceOfBad;
+    public int currentPhrase;
+    public int currentWaveLength;
     public GameObject spawnPoint;
+    public GameObject conveyorStart;
     public GameObject badPhrase;
     public GameObject goodPhrase;
     public GameObject[] wave;
@@ -14,7 +17,7 @@ public class WaveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        createWave(3, 2);
     }
 
     // Update is called once per frame
@@ -25,10 +28,11 @@ public class WaveController : MonoBehaviour
 
     void createWave(int size, int badChance)
     {
+        currentWaveLength = size;
         chanceOfBad = badChance;
         wave = new GameObject[size];
         Debug.Log("this wave size is " + wave.Length.ToString());
-        for (int i = 0; i <= wave.Length; i++)
+        for (int i = 0; i < wave.Length; i++)
         {
             wave[i] = CreatePhrase();
         }
@@ -47,6 +51,25 @@ public class WaveController : MonoBehaviour
         }
         else
         {
+            return null;
+        }
+    }
+
+    public GameObject nextPhrase()
+    {
+        if(currentPhrase < currentWaveLength && wave[currentPhrase] != null)
+        {
+            
+            Phrase phraseControl = wave[currentPhrase].GetComponentInChildren<Phrase>();
+            phraseControl.moveNext(conveyorStart.transform);
+            GameObject send = wave[currentPhrase];
+            wave[currentPhrase] = null;
+            currentPhrase++;
+            return send;
+        }
+        else
+        {
+            currentPhrase = 0;
             return null;
         }
     }
