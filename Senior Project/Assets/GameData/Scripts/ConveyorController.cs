@@ -67,6 +67,7 @@ public class ConveyorController : MonoBehaviour
         if(phrases[10] != null)
         {
             Destroy(phrases[10]);
+            phrases[10] = null;
         }
         for(int i = 9; i >= 0; i--)
         {
