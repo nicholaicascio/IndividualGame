@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Phrase : MonoBehaviour
 {
+    public WaveController wave;
     public Transform target;
+    public string status;
     public float smoothTime = 0.5f;
     private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject obj = GameObject.FindGameObjectWithTag("GameController");
+        wave = obj.GetComponent<WaveController>();
         target = this.transform;
     }
 
@@ -27,5 +31,13 @@ public class Phrase : MonoBehaviour
     public void moveNext(Transform pos)
     {
         target = pos;
+    }
+
+    public void clicked()
+    {
+        if (status == "good")
+        {
+            wave.incorrectResponses++;
+        }
     }
 }

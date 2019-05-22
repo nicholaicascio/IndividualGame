@@ -6,6 +6,8 @@ public class ConveyorController : MonoBehaviour
 {
     float elapsed = 0f;
     public int waveSize;
+    public int countDownWave;
+    public bool WaveOver = false;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
     public GameObject spawnPoint;
@@ -41,8 +43,10 @@ public class ConveyorController : MonoBehaviour
 
     void createWave(int size, int badChance)
     {
+        WaveOver = false;
         chanceOfBad = badChance;
         wave = new GameObject[size];
+        countDownWave = wave.Length;
         Debug.Log("this wave size is " + wave.Length.ToString());
         for (int i = 0; i < wave.Length; i++)
         {
@@ -68,6 +72,11 @@ public class ConveyorController : MonoBehaviour
         {
             Destroy(phrases[10]);
             phrases[10] = null;
+            countDownWave--;
+        }
+        if(countDownWave == 0 && WaveOver == false)
+        {
+            WaveEnded();
         }
         for(int i = 9; i >= 0; i--)
         {
@@ -77,7 +86,6 @@ public class ConveyorController : MonoBehaviour
                 phrases[i] = null;
             }
         }
-
         if(wave[0] != null)
         {
             phrases[0] = wave[0];
@@ -90,11 +98,15 @@ public class ConveyorController : MonoBehaviour
         int num = Random.Range(1, 10);
         if (num <= chanceOfBad)
         {
-            return Instantiate(badPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            GameObject p = badPhrase;
+            p.GetComponent<Phrase>().status = "bad";
+            return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
         else if (num > chanceOfBad)
         {
-            return Instantiate(goodPhrase, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            GameObject p = goodPhrase;
+            p.GetComponent<Phrase>().status = "good";
+            return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
         else
         {
@@ -112,5 +124,10 @@ public class ConveyorController : MonoBehaviour
                 phraseControl.moveNext(phrasePos[i].transform);
             }
         }
+    }
+    void WaveEnded()
+    {
+        WaveOver = true;
+        Debug.Log("end of wave");
     }
 }
