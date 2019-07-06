@@ -16,9 +16,13 @@ public class ConveyorController : MonoBehaviour
     public GameObject[] phrases;
     public GameObject[] phrasePos;
     public GameObject[] wave;
+    public Phrase lastPhrase;
+    public WaveController wController;
 
     private void Start()
     {
+        GameObject obj = GameObject.FindGameObjectWithTag("GameController");
+        wController = obj.GetComponent<WaveController>();
         phrases = new GameObject[11];
         createWave(waveSize, 2);
     }
@@ -70,6 +74,16 @@ public class ConveyorController : MonoBehaviour
     {
         if(phrases[10] != null)
         {
+            if(phrases[9] != null)
+            {
+                GameObject obj = phrases[9];
+                lastPhrase = obj.GetComponent<Phrase>();
+                if (lastPhrase.chosen == false && lastPhrase.status == "bad")
+                {
+                    wController.badMissed++;
+                }
+                lastPhrase = null;
+            }
             Destroy(phrases[10]);
             phrases[10] = null;
             countDownWave--;

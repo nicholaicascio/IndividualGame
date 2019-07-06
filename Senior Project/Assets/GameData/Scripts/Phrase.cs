@@ -7,6 +7,7 @@ public class Phrase : MonoBehaviour
     public WaveController wave;
     public Transform target;
     public string status;
+    public bool chosen = false;
     public float smoothTime = 0.5f;
     private Vector3 velocity = Vector3.zero;
 
@@ -35,9 +36,11 @@ public class Phrase : MonoBehaviour
 
     public void clicked()
     {
+        chosen = true;
         if (status == "good")
         {
             wave.incorrectResponses++;
         }
+        
     }
 }

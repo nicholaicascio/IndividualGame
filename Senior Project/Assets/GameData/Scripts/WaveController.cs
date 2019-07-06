@@ -6,5 +6,5 @@ public class WaveController : MonoBehaviour
 {
     public int currentWave;
     public int incorrectResponses;
-
+    public int badMissed;
 }
