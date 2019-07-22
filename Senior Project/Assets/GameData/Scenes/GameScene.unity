@@ -349,6 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWave: 0
   incorrectResponses: 0
+  badMissed: 0
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +617,7 @@ MonoBehaviour:
   waveSize: 10
   countDownWave: 0
   WaveOver: 0
-  chanceOfBad: 2
+  chanceOfBad: 5
   timeBetween: 1
   spawnPoint: {fileID: 911343048}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
@@ -636,6 +637,8 @@ MonoBehaviour:
   - {fileID: 1214048117}
   - {fileID: 570993921}
   wave: []
+  lastPhrase: {fileID: 0}
+  wController: {fileID: 0}
 --- !u!1 &883985195
 GameObject:
   m_ObjectHideFlags: 0
