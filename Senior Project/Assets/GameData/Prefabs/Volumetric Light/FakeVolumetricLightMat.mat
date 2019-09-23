@@ -57,13 +57,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaOffset: 0.903
-    - _Ambient: 0.725
+    - _Ambient: 0.196
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Fade: 2.51
-    - _Fresnel: 3.69
+    - _Fresnel: 1.49
     - _FresnelPower: 6.92
     - _GlossMapScale: 1
     - _Glossiness: 0.5
