@@ -143,5 +143,6 @@ public class ConveyorController : MonoBehaviour
     {
         WaveOver = true;
         Debug.Log("end of wave");
+        wController.nextWave();
     }
 }

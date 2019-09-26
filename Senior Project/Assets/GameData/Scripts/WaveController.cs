@@ -26,4 +26,9 @@ public class WaveController : MonoBehaviour
         ErrorsDisplay.text = (incorrectResponses + badMissed).ToString();
         WaveDisplay.text = currentWave.ToString();
     }
+
+    public void nextWave()
+    {
+        Debug.Log("nextWave");
+    }
 }
