@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class WaveController : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class WaveController : MonoBehaviour
 
     public Text ErrorsDisplay;
     public Text WaveDisplay;
+
+    public VideoSystem videoSystem;
+    public VideoClip millionaireClip;
+
+    private void Start()
+    {
+        videoSystem.setNewVideo(millionaireClip);
+    }
 
     void Update()
     {
