@@ -19,12 +19,15 @@ public class ConveyorController : MonoBehaviour
     public Phrase lastPhrase;
     public WaveController wController;
 
+    //waveSize, chanceOfBad(out of ten. higher number means more likely), timeBetween(in seconds)
+    int[,] waveArray = new int[11, 3] { { 5, 5, 4 }, { 10, 1, 3 }, { 10, 2, 3 }, { 12, 3, 3 }, { 13, 5, 3 }, { 14, 5, 3 }, { 15, 3, 3 }, { 16, 2, 3 }, { 17, 2, 3 }, { 18, 1, 3 }, { 20, 0, 3 } };
+
     private void Start()
     {
         GameObject obj = GameObject.FindGameObjectWithTag("GameController");
         wController = obj.GetComponent<WaveController>();
         phrases = new GameObject[11];
-        createWave(waveSize, 2);
+        //createWave(waveSize, 2);
     }
 
     void Update()
@@ -45,10 +48,11 @@ public class ConveyorController : MonoBehaviour
         }
     }
 
-    void createWave(int size, int badChance)
+    public void createWave(int waveNum)
     {
         WaveOver = false;
-        chanceOfBad = badChance;
+        chanceOfBad = waveArray[waveNum, 1];
+        int size = waveArray[waveNum, 0];
         wave = new GameObject[size];
         countDownWave = wave.Length;
         Debug.Log("this wave size is " + wave.Length.ToString());

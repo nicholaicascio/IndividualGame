@@ -757,7 +757,8 @@ MonoBehaviour:
   ErrorsDisplay: {fileID: 700517012}
   WaveDisplay: {fileID: 1260306644}
   videoSystem: {fileID: 1269396088}
-  millionaireClip: {fileID: 32900000, guid: a84c97d40f96afa46b9f869ca3847c0b, type: 3}
+  millionaireClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
+  conveyor: {fileID: 865612517}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,11 +1181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1e8b26e0392d84cb44bba8264e9661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSize: 10
+  waveSize: 5
   countDownWave: 0
   WaveOver: 0
   chanceOfBad: 5
-  timeBetween: 1
+  timeBetween: 3
   spawnPoint: {fileID: 911343048}
   badPhrase: {fileID: 8554098787251128129, guid: 04339e5cc90fe4d44942c90a13ddf440,
     type: 3}
@@ -2644,6 +2645,11 @@ PrefabInstance:
     - target: {fileID: 2356177054370783562, guid: 8f6c1e5a69ef97149be382a06fee74ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356177054370783563, guid: 8f6c1e5a69ef97149be382a06fee74ce,
+        type: 3}
+      propertyPath: currentWave
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
