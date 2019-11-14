@@ -10,7 +10,7 @@ public class PhraseData : MonoBehaviour
     Quote quote2;
     Quote quote3;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         Quote quote0 = new Quote();

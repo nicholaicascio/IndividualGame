@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConveyorController : MonoBehaviour
 {
     float elapsed = 0f;
+    public int currentWave = 0;
     public int waveSize;
     public int countDownWave;
     public bool WaveOver = false;
@@ -18,6 +20,7 @@ public class ConveyorController : MonoBehaviour
     public GameObject[] wave;
     public Phrase lastPhrase;
     public WaveController wController;
+    public WaveCreator creator;
 
     //waveSize, chanceOfBad(out of ten. higher number means more likely), timeBetween(in seconds)
     int[,] waveArray = new int[11, 3] { { 5, 5, 4 }, { 10, 1, 3 }, { 10, 2, 3 }, { 12, 3, 3 }, { 13, 5, 3 }, { 14, 5, 3 }, { 15, 3, 3 }, { 16, 2, 3 }, { 17, 2, 3 }, { 18, 1, 3 }, { 20, 0, 3 } };
@@ -51,15 +54,47 @@ public class ConveyorController : MonoBehaviour
     public void createWave(int waveNum)
     {
         WaveOver = false;
-        chanceOfBad = waveArray[waveNum, 1];
-        int size = waveArray[waveNum, 0];
-        wave = new GameObject[size];
+        //chanceOfBad = waveArray[waveNum, 1];
+        //int size = waveArray[waveNum, 0];
+        //wave = new GameObject[size];
+        //countDownWave = wave.Length;
+        //Debug.Log("this wave size is " + wave.Length.ToString());
+        //for (int i = 0; i < wave.Length; i++)
+        //{
+            //wave[i] = ReturnRandomPhrase();
+        //}
+        //Debug.Log(creator.finalWaves[currentWave].quotes.Count);
+        int sizeOfWave = creator.finalWaves[currentWave].quotes.Count;
+        Debug.Log(sizeOfWave);
+        wave = new GameObject[sizeOfWave];
         countDownWave = wave.Length;
         Debug.Log("this wave size is " + wave.Length.ToString());
         for (int i = 0; i < wave.Length; i++)
         {
-            wave[i] = ReturnRandomPhrase();
+            GameObject p;
+            if(creator.finalWaves[currentWave].quotes[i].badOnWave[currentWave] == true)
+            {
+                p = badPhrase;
+                p.GetComponent<Phrase>().status = "bad";
+                p.GetComponentInChildren<Text>().text = creator.finalWaves[currentWave].quotes[i].text;
+            }
+            else
+            {
+                p = goodPhrase;
+                p.GetComponent<Phrase>().status = "good";
+                p.GetComponentInChildren<Text>().text = creator.finalWaves[currentWave].quotes[i].text;
+            }
+            
+            wave[i] = Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
+        currentWave++;
+    }
+
+    GameObject ReturnPhrase()
+    {
+        GameObject p = goodPhrase;
+        p.GetComponent<Phrase>().status = "good";
+        return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
     }
 
     void UpdateWave()
@@ -108,27 +143,6 @@ public class ConveyorController : MonoBehaviour
         {
             phrases[0] = wave[0];
             wave[0] = null;
-        }
-    }
-
-    GameObject ReturnRandomPhrase()
-    {
-        int num = Random.Range(1, 10);
-        if (num <= chanceOfBad)
-        {
-            GameObject p = badPhrase;
-            p.GetComponent<Phrase>().status = "bad";
-            return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-        }
-        else if (num > chanceOfBad)
-        {
-            GameObject p = goodPhrase;
-            p.GetComponent<Phrase>().status = "good";
-            return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-        }
-        else
-        {
-            return null;
         }
     }
 

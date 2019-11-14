@@ -6,5 +6,5 @@ using System;
 [Serializable]
 public class Wave
 {
-    public List<Quote> quotes;
+    public List<Quote> quotes = new List<Quote>();
 }
