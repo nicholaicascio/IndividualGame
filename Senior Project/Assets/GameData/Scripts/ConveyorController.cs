@@ -35,6 +35,7 @@ public class ConveyorController : MonoBehaviour
 
     void Update()
     {
+        //this is our core update loop. we are counting over time and then performing the actions nesiccary in sequence
         elapsed += Time.deltaTime;
         if (elapsed >= timeBetween)
         {
@@ -54,23 +55,15 @@ public class ConveyorController : MonoBehaviour
     public void createWave(int waveNum)
     {
         WaveOver = false;
-        //chanceOfBad = waveArray[waveNum, 1];
-        //int size = waveArray[waveNum, 0];
-        //wave = new GameObject[size];
-        //countDownWave = wave.Length;
-        //Debug.Log("this wave size is " + wave.Length.ToString());
-        //for (int i = 0; i < wave.Length; i++)
-        //{
-            //wave[i] = ReturnRandomPhrase();
-        //}
-        //Debug.Log(creator.finalWaves[currentWave].quotes.Count);
+        //pull the wave we need to create from the creator
         int sizeOfWave = creator.finalWaves[currentWave].quotes.Count;
-        Debug.Log(sizeOfWave);
         wave = new GameObject[sizeOfWave];
+        //set the wave size in the countdown so we can iterate through it
         countDownWave = wave.Length;
         Debug.Log("this wave size is " + wave.Length.ToString());
         for (int i = 0; i < wave.Length; i++)
         {
+            //here we set the attributes of each card in the wave
             GameObject p;
             if(creator.finalWaves[currentWave].quotes[i].badOnWave[currentWave] == true)
             {
@@ -84,7 +77,7 @@ public class ConveyorController : MonoBehaviour
                 p.GetComponent<Phrase>().status = "good";
                 p.GetComponentInChildren<Text>().text = creator.finalWaves[currentWave].quotes[i].text;
             }
-            
+            //here we create it once it's set up
             wave[i] = Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
         currentWave++;
@@ -92,6 +85,7 @@ public class ConveyorController : MonoBehaviour
 
     GameObject ReturnPhrase()
     {
+        //this is an old method for generating a phrase
         GameObject p = goodPhrase;
         p.GetComponent<Phrase>().status = "good";
         return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
@@ -101,6 +95,8 @@ public class ConveyorController : MonoBehaviour
     {
         for (int i = 0; i < (wave.Length - 1); i++)
         {
+            //go through and pull each card in the wave to the next position
+            //this is the wave! so these are not on the conveyor yet!
             if (wave[i] == null && wave[i + 1] != null)
             {
                 wave[i] = wave[i + 1];
@@ -119,28 +115,33 @@ public class ConveyorController : MonoBehaviour
                 lastPhrase = obj.GetComponent<Phrase>();
                 if (lastPhrase.chosen == false && lastPhrase.status == "bad")
                 {
+                    //this is where we track their score. we are abot to destory the last one in line so we see if they properly sorted it
                     wController.badMissed++;
                 }
                 lastPhrase = null;
             }
+            //actually destory the last one in the line
             Destroy(phrases[10]);
             phrases[10] = null;
             countDownWave--;
         }
         if(countDownWave == 0 && WaveOver == false)
         {
+            //what we want to call when there is nothing left to sort
             WaveEnded();
         }
         for(int i = 9; i >= 0; i--)
         {
             if(phrases[i] != null)
             {
+                //here you can see we are pulling the cards that are on the conveyor through the conveyor
                 phrases[i + 1] = phrases[i];
                 phrases[i] = null;
             }
         }
         if(wave[0] != null)
         {
+            //get the next-in-line card from wave and put it into phrases
             phrases[0] = wave[0];
             wave[0] = null;
         }
@@ -152,6 +153,7 @@ public class ConveyorController : MonoBehaviour
         {
             if(phrases[i] != null)
             {
+                //this physically calls the move method in the phrase class, it passes the location that it should move to
                 Phrase phraseControl = phrases[i].GetComponentInChildren<Phrase>();
                 phraseControl.moveNext(phrasePos[i].transform);
             }
@@ -159,6 +161,7 @@ public class ConveyorController : MonoBehaviour
     }
     void WaveEnded()
     {
+        //this is called when a wave is over
         WaveOver = true;
         Debug.Log("end of wave");
         wController.nextWave();
