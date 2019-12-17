@@ -16,12 +16,14 @@ public class WaveController : MonoBehaviour
 
     public VideoSystem videoSystem;
     public VideoClip millionaireClip;
+    public VideoClip faceClip;
     public ConveyorController conveyor;
 
+    //NOTE: this script is assigned to the GameController in the GameScene!
     private void Start()
     {
-        videoSystem.setNewVideo(millionaireClip);
-        conveyor.createWave(currentWave);
+        videoSystem.setNewVideo(faceClip);
+        //conveyor.createWave(currentWave);
     }
 
     void Update()

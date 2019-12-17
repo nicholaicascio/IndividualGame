@@ -758,6 +758,7 @@ MonoBehaviour:
   WaveDisplay: {fileID: 1260306644}
   videoSystem: {fileID: 1269396088}
   millionaireClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
+  faceClip: {fileID: 32900000, guid: 0a7d77ab6387c914694cacc16ef9e4d8, type: 3}
   conveyor: {fileID: 865612517}
 --- !u!1 &476721876
 GameObject:
@@ -873,8 +874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efed57fd5a743c4496c2c71df6c3ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 1509388673}
   secondsBetween: 0.03
+  textBox: {fileID: 1509388673}
+  conveyor: {fileID: 865612517}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,14 +1143,14 @@ RectTransform:
   m_GameObject: {fileID: 752870642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.028}
-  m_LocalScale: {x: 1, y: 0.4, z: 1}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 476721877}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -85}
+  m_AnchoredPosition: {x: 0, y: -111.6}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752870644
@@ -1374,7 +1376,7 @@ MonoBehaviour:
   currentWave: 0
   waveSize: 5
   countDownWave: 0
-  WaveOver: 0
+  WaveOver: 1
   chanceOfBad: 5
   timeBetween: 3
   spawnPoint: {fileID: 911343048}
@@ -2366,7 +2368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.1, y: -160}
+  m_AnchoredPosition: {x: -6.1, y: -205.6}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1509388673
@@ -2406,9 +2408,7 @@ MonoBehaviour:
 
     test test test
 
-    swag swag swag
-
-    hello governor'
+    hello world'
 --- !u!222 &1509388674
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2607,7 +2607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: -130}
+  m_AnchoredPosition: {x: 115, y: -52.63}
   m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741256863

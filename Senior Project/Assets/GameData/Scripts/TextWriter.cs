@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class TextWriter : MonoBehaviour
 {
-    //this is the box where we will display the text to the user
-    public Text textBox;
     //this float is how many seconds between printing a character
     [SerializeField] private float secondsBetween = 0.03f;
+    //this is the box where we will display the text to the user
+    public Text textBox;
+    //a reference to the conveyor belt so that we can start the first(practice) wave after reading the instructions
+    public ConveyorController conveyor;
     //Store all your text in this string array
-    private string[] textToPrint = new string[] { "1. Laik's super awesome custom typewriter script", "2. You can click to skip to the next text", "3.All text is stored in a single string array", "4. Ok, now we can continue", "5. End Kappa" };
-    private int currentlyDisplayingText = 0;
+    private string[] textToPrint = new string[] { "Artyom, welcome to your first day at the Ministry of Communication.", 
+        "It is a great honor to serve your people.", "Here we proofread the communications of our brethren so as to look for errors or other misspeaks that could cause any sort of embarrassment.", 
+        "Look at the conveyor below you. Here you will see letters from your brethren.", "Click on a letter to mark it for removal.", 
+        "Let us practice once to make sure you understood my directions." };
+    private  int currentlyDisplayingText = 0;
     void Awake()
     {
         StartCoroutine(AnimateText());
@@ -22,11 +27,20 @@ public class TextWriter : MonoBehaviour
         StopAllCoroutines();
         currentlyDisplayingText++;
         //If we've reached the end of the array, do anything you want. I just restart the example text
-        if (currentlyDisplayingText > textToPrint.Length)
+        
+        if (currentlyDisplayingText < textToPrint.Length)
         {
-            currentlyDisplayingText = 0;
+            //as the button is pressed, go through the array of strings
+            StartCoroutine(AnimateText());
         }
-        StartCoroutine(AnimateText());
+        if (currentlyDisplayingText >= textToPrint.Length)
+        {
+            //if we are at the end of the array do this.
+            currentlyDisplayingText = 0;
+            conveyor.WaveOver = false;
+            //StartCoroutine(AnimateText());
+        }
+
     }
     IEnumerator AnimateText()
     {

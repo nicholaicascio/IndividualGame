@@ -9,7 +9,7 @@ public class ConveyorController : MonoBehaviour
     public int currentWave = 0;
     public int waveSize;
     public int countDownWave;
-    public bool WaveOver = false;
+    public bool WaveOver = true;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
     public GameObject spawnPoint;
@@ -35,21 +35,25 @@ public class ConveyorController : MonoBehaviour
 
     void Update()
     {
-        //this is our core update loop. we are counting over time and then performing the actions nesiccary in sequence
-        elapsed += Time.deltaTime;
-        if (elapsed >= timeBetween)
+        if (!WaveOver)
         {
-            elapsed = elapsed % 1f;
-
-            PullPhraseFromWave();
-
-            MovePhrases();
-
-            if (wave[1] != null)
+            //this is our core update loop. we are counting over time and then performing the actions nesiccary in sequence
+            elapsed += Time.deltaTime;
+            if (elapsed >= timeBetween)
             {
-                UpdateWave();
+                elapsed = elapsed % 1f;
+
+                PullPhraseFromWave();
+
+                MovePhrases();
+
+                if (wave[1] != null)
+                {
+                    UpdateWave();
+                }
             }
         }
+        
     }
 
     public void createWave(int waveNum)
