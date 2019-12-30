@@ -9,8 +9,8 @@ public class TextWriter : MonoBehaviour
     [SerializeField] private float secondsBetween = 0.03f;
     //this is the box where we will display the text to the user
     public Text textBox;
-    //a reference to the conveyor belt so that we can start the first(practice) wave after reading the instructions
-    public ConveyorController conveyor;
+    //a reference to the wave controller so that we can start the first(practice) wave after reading the instructions
+    public WaveController wcontroller;
     //Store all your text in this string array
     private string[] textToPrint = new string[] { "Artyom, welcome to your first day at the Ministry of Communication.", 
         "It is a great honor to serve your people.", "Here we proofread the communications of our brethren so as to look for errors or other misspeaks that could cause any sort of embarrassment.", 
@@ -37,7 +37,8 @@ public class TextWriter : MonoBehaviour
         {
             //if we are at the end of the array do this.
             currentlyDisplayingText = 0;
-            conveyor.WaveOver = false;
+            //conveyor.WaveOver = false;
+            wcontroller.nextWave();
             //StartCoroutine(AnimateText());
         }
 

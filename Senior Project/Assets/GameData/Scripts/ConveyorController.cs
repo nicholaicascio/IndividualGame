@@ -9,7 +9,7 @@ public class ConveyorController : MonoBehaviour
     public int currentWave = 0;
     public int waveSize;
     public int countDownWave;
-    public bool WaveOver = true;
+    public bool WaveOver = false;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
     public GameObject spawnPoint;

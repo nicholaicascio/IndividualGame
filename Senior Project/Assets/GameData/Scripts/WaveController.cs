@@ -29,7 +29,7 @@ public class WaveController : MonoBehaviour
     void Update()
     {
         ErrorsDisplay.text = (incorrectResponses + badMissed).ToString();
-        WaveDisplay.text = (currentWave +1 ).ToString();
+        WaveDisplay.text = (currentWave).ToString();
     }
 
     public void nextWave()
