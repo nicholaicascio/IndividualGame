@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class TextWriter : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class TextWriter : MonoBehaviour
     public Text textBox;
     //a reference to the wave controller so that we can start the first(practice) wave after reading the instructions
     public WaveController wcontroller;
+    //reference to the video player and the clips
+    public VideoSystem videoSystem;
+    public VideoClip millionaireClip;
+    public VideoClip faceClip;
+    public VideoClip planetClip;
+    public VideoClip fogClip;
     //Store all your text in this string array
-    private string[] textToPrint = new string[] { "Artyom, welcome to your first day at the Ministry of Communication.", 
+    private string[] textToPrint = new string[] { "Welcome to your first day at the Ministry of Communication.", 
         "It is a great honor to serve your people.", "Here we proofread the communications of our brethren so as to look for errors or other misspeaks that could cause any sort of embarrassment.", 
         "Look at the conveyor below you. Here you will see letters from your brethren.", "Click on a letter to mark it for removal.", 
         "Let us practice once to make sure you understood my directions." };
@@ -39,13 +46,14 @@ public class TextWriter : MonoBehaviour
             currentlyDisplayingText = 0;
             //conveyor.WaveOver = false;
             wcontroller.nextWave();
+            videoSystem.setNewVideo(millionaireClip);
             //StartCoroutine(AnimateText());
         }
 
     }
     IEnumerator AnimateText()
     {
-
+        //this is displaying the current text from textToPrint in textBox
         for (int i = 0; i < (textToPrint[currentlyDisplayingText].Length + 1); i++)
         {
             textBox.text = textToPrint[currentlyDisplayingText].Substring(0, i);

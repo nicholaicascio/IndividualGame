@@ -22,5 +22,6 @@ public class VideoSystem : MonoBehaviour
     {
         player.clip = vid;
         player.Play();
+        //player.
     }
 }

@@ -15,7 +15,7 @@ public class WaveController : MonoBehaviour
     public Text WaveDisplay;
 
     public VideoSystem videoSystem;
-    public VideoClip millionaireClip;
+    public VideoClip planetClip;
     public VideoClip faceClip;
     public ConveyorController conveyor;
 
@@ -23,6 +23,7 @@ public class WaveController : MonoBehaviour
     private void Start()
     {
         videoSystem.setNewVideo(faceClip);
+        //videoSystem.setNewVideo(faceClip);
         //conveyor.createWave(currentWave);
     }
 
@@ -30,6 +31,11 @@ public class WaveController : MonoBehaviour
     {
         ErrorsDisplay.text = (incorrectResponses + badMissed).ToString();
         WaveDisplay.text = (currentWave).ToString();
+    }
+
+    public void waveOver(int num)
+    {
+
     }
 
     public void nextWave()

@@ -757,7 +757,7 @@ MonoBehaviour:
   ErrorsDisplay: {fileID: 700517012}
   WaveDisplay: {fileID: 1260306644}
   videoSystem: {fileID: 1269396088}
-  millionaireClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
+  planetClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
   faceClip: {fileID: 32900000, guid: 0a7d77ab6387c914694cacc16ef9e4d8, type: 3}
   conveyor: {fileID: 865612517}
 --- !u!1 &476721876
@@ -876,8 +876,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsBetween: 0.03
   textBox: {fileID: 1509388673}
-  conveyor: {fileID: 865612517}
   wcontroller: {fileID: 448422797}
+  videoSystem: {fileID: 1269396088}
+  millionaireClip: {fileID: 32900000, guid: a84c97d40f96afa46b9f869ca3847c0b, type: 3}
+  faceClip: {fileID: 32900000, guid: 0a7d77ab6387c914694cacc16ef9e4d8, type: 3}
+  planetClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
+  fogClip: {fileID: 32900000, guid: 27bcda4124a5c724dafd832f859e53ec, type: 3}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,7 +2120,7 @@ GameObject:
   - component: {fileID: 1269396086}
   - component: {fileID: 1269396088}
   m_Layer: 0
-  m_Name: VideoPlayer
+  m_Name: VideoSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2711,7 +2715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823553832}
   m_Layer: 0
-  m_Name: VideoSystem
+  m_Name: VideoScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
