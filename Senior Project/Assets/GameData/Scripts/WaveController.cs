@@ -18,6 +18,7 @@ public class WaveController : MonoBehaviour
     public VideoClip planetClip;
     public VideoClip faceClip;
     public ConveyorController conveyor;
+    public TextWriter tWriter;
 
     //NOTE: this script is assigned to the GameController in the GameScene!
     private void Start()
@@ -40,11 +41,21 @@ public class WaveController : MonoBehaviour
 
     public void nextWave()
     {
+        
         if(currentWave < 10)
         {
             currentWave += 1;
+            //send line below to GenerateNextWave, here put a call to the textwriter
+            //have textwriter play creepyface and run some text appropriate for this level
             conveyor.createWave(currentWave);
         }
 
+    }
+
+    public void GenerateNextWave()
+    {
+        //conveyor.createWave(currentWave)
+        //this should be called after the text is done.
+        //play a video clip as well
     }
 }

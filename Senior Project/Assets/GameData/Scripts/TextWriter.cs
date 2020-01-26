@@ -26,7 +26,7 @@ public class TextWriter : MonoBehaviour
     private  int currentlyDisplayingText = 0;
     void Awake()
     {
-        StartCoroutine(AnimateText());
+        StartCoroutine(AnimateText(textToPrint));
     }
     //This is a function for a button you press to skip to the next text
     public void SkipToNextText()
@@ -38,7 +38,7 @@ public class TextWriter : MonoBehaviour
         if (currentlyDisplayingText < textToPrint.Length)
         {
             //as the button is pressed, go through the array of strings
-            StartCoroutine(AnimateText());
+            StartCoroutine(AnimateText(textToPrint));
         }
         if (currentlyDisplayingText >= textToPrint.Length)
         {
@@ -51,7 +51,7 @@ public class TextWriter : MonoBehaviour
         }
 
     }
-    IEnumerator AnimateText()
+    IEnumerator AnimateText(string[] printThis)
     {
         //this is displaying the current text from textToPrint in textBox
         for (int i = 0; i < (textToPrint[currentlyDisplayingText].Length + 1); i++)

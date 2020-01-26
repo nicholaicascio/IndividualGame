@@ -760,6 +760,7 @@ MonoBehaviour:
   planetClip: {fileID: 32900000, guid: 27e1a42505236d040acf2f4c256295d8, type: 3}
   faceClip: {fileID: 32900000, guid: 0a7d77ab6387c914694cacc16ef9e4d8, type: 3}
   conveyor: {fileID: 865612517}
+  tWriter: {fileID: 476721881}
 --- !u!1 &476721876
 GameObject:
   m_ObjectHideFlags: 0
