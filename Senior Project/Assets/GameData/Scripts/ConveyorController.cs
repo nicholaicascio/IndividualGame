@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ConveyorController : MonoBehaviour
 {
     float elapsed = 0f;
-    public int currentWave = 0;
+    //public int currentWave = 0;
     public int waveSize;
     public int countDownWave;
     public bool WaveOver = false;
@@ -60,7 +60,7 @@ public class ConveyorController : MonoBehaviour
     {
         WaveOver = false;
         //pull the wave we need to create from the creator
-        int sizeOfWave = creator.finalWaves[currentWave].quotes.Count;
+        int sizeOfWave = creator.finalWaves[waveNum].quotes.Count;
         wave = new GameObject[sizeOfWave];
         //set the wave size in the countdown so we can iterate through it
         countDownWave = wave.Length;
@@ -69,22 +69,22 @@ public class ConveyorController : MonoBehaviour
         {
             //here we set the attributes of each card in the wave
             GameObject p;
-            if(creator.finalWaves[currentWave].quotes[i].badOnWave[currentWave] == true)
+            if(creator.finalWaves[waveNum].quotes[i].badOnWave[waveNum] == true)
             {
                 p = badPhrase;
                 p.GetComponent<Phrase>().status = "bad";
-                p.GetComponentInChildren<Text>().text = creator.finalWaves[currentWave].quotes[i].text;
+                p.GetComponentInChildren<Text>().text = creator.finalWaves[waveNum].quotes[i].text;
             }
             else
             {
                 p = goodPhrase;
                 p.GetComponent<Phrase>().status = "good";
-                p.GetComponentInChildren<Text>().text = creator.finalWaves[currentWave].quotes[i].text;
+                p.GetComponentInChildren<Text>().text = creator.finalWaves[waveNum].quotes[i].text;
             }
             //here we create it once it's set up
             wave[i] = Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
         }
-        currentWave++;
+        //currentWave++;
     }
 
     GameObject ReturnPhrase()

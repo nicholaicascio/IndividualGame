@@ -10,6 +10,7 @@ public class TextWriter : MonoBehaviour
     [SerializeField] private float secondsBetween = 0.03f;
     //this is the box where we will display the text to the user
     public Text textBox;
+    public GameObject textUI;
     //a reference to the wave controller so that we can start the first(practice) wave after reading the instructions
     public WaveController wcontroller;
     //reference to the video player and the clips
@@ -19,10 +20,19 @@ public class TextWriter : MonoBehaviour
     public VideoClip planetClip;
     public VideoClip fogClip;
     //Store all your text in this string array
-    private string[] textToPrint = new string[] { "Welcome to your first day at the Ministry of Communication.", 
+    private List<string> textToPrint = new List<string> { "Welcome to your first day at the Ministry of Communication.", 
         "It is a great honor to serve your people.", "Here we proofread the communications of our brethren so as to look for errors or other misspeaks that could cause any sort of embarrassment.", 
         "Look at the conveyor below you. Here you will see letters from your brethren.", "Click on a letter to mark it for removal.", 
         "Let us practice once to make sure you understood my directions." };
+    public List<string> wave1Text = new List<string> { "Yes you are beginning to get the hang of it comrade.", 
+        "Now it is time for you to proofread works from your brothers.", 
+        "Remember to mark any letters which would speak ill of The Party for destruction, lest they embarrass your comrades."};
+    public List<string> wave2Text = new List<string> { "Comrade you are becoming extremely efficient at sorting the letters of our people.",
+    "I have just received word from the people’s capital that we are no longer doing business with our comrades in the pacific.",
+    "As a result, bananas are no longer being rationed by The Party.",
+    "Please make sure that none of our brothers are making a mistake by addressing these fruits.",
+    "And remember, comrade... Do not allow your errors to rise too high, we cannot have mistakes at the Ministry of Communication!"};
+
     private  int currentlyDisplayingText = 0;
     void Awake()
     {
@@ -35,29 +45,61 @@ public class TextWriter : MonoBehaviour
         currentlyDisplayingText++;
         //If we've reached the end of the array, do anything you want. I just restart the example text
         
-        if (currentlyDisplayingText < textToPrint.Length)
+        if (currentlyDisplayingText < textToPrint.Count)
         {
             //as the button is pressed, go through the array of strings
             StartCoroutine(AnimateText(textToPrint));
         }
-        if (currentlyDisplayingText >= textToPrint.Length)
+        if (currentlyDisplayingText >= textToPrint.Count)
         {
             //if we are at the end of the array do this.
             currentlyDisplayingText = 0;
-            //conveyor.WaveOver = false;
-            wcontroller.nextWave();
+            //if wcontroller.currentwave > 0 we want to call wcontroller.GenerateNextWave() instead
+            if(wcontroller.currentWave > 0)
+            {
+                wcontroller.GenerateNextWave();
+            }
+            else
+            {
+                wcontroller.nextWave();
+            }
             videoSystem.setNewVideo(millionaireClip);
-            //StartCoroutine(AnimateText());
+            textUI.SetActive(false);
         }
 
     }
-    IEnumerator AnimateText(string[] printThis)
+    IEnumerator AnimateText(List<string> printThis)
     {
         //this is displaying the current text from textToPrint in textBox
         for (int i = 0; i < (textToPrint[currentlyDisplayingText].Length + 1); i++)
         {
             textBox.text = textToPrint[currentlyDisplayingText].Substring(0, i);
             yield return new WaitForSeconds(secondsBetween);
+        }
+    }
+
+    public void WriteNextText(int currentWave)
+    {
+        //Debug.Log(currentWave);
+        //currentWave--;
+        if (currentWave == 1)
+        {
+            textToPrint.Clear();
+            textToPrint = wave1Text;
+            textUI.SetActive(true);
+            StartCoroutine(AnimateText(textToPrint));
+
+        }
+        else if(currentWave == 2)
+        {
+            textToPrint.Clear();
+            textToPrint = wave2Text;
+            textUI.SetActive(true);
+            StartCoroutine(AnimateText(textToPrint));
+        }
+        else
+        {
+            wcontroller.GenerateNextWave();
         }
     }
 }
