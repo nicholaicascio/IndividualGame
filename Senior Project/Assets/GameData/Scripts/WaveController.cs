@@ -31,28 +31,23 @@ public class WaveController : MonoBehaviour
     void Update()
     {
         ErrorsDisplay.text = (incorrectResponses + badMissed).ToString();
-        WaveDisplay.text = (currentWave).ToString();
     }
 
     public void nextWave()
     {
-        //Debug.Log(currentWave);
+        WaveDisplay.text = (currentWave).ToString();
+
         if (currentWave == 0)
         {
             //Debug.Log("beep");
             //this happens first wave after intro text
             //the reason we have a special case for this first wave is because we don't need to play any text after calling this wave
-            conveyor.createWave(currentWave);
-            currentWave++;
-            
+            conveyor.createWave(0);
         }
         else if(currentWave < 10)
         {
             //Debug.Log("boop");
-            //conveyor.createWave(currentWave);
             tWriter.WriteNextText(currentWave);
-
-            currentWave++;
             //tell textwriter to write some text and play creepyface
             //when textwriter is done it should call generate next wave
             
@@ -62,6 +57,7 @@ public class WaveController : MonoBehaviour
 
     public void GenerateNextWave()
     {
+        WaveDisplay.text = (currentWave).ToString();
         conveyor.createWave(currentWave);
         //this should be called after the text is done.
         //play a video clip as well

@@ -20,7 +20,7 @@ public class TextWriter : MonoBehaviour
     public VideoClip planetClip;
     public VideoClip fogClip;
     //Store all your text in this string array
-    private List<string> textToPrint = new List<string> { "Welcome to your first day at the Ministry of Communication.", 
+    public List<string> textToPrint = new List<string> { "Welcome to your first day at the Ministry of Communication.", 
         "It is a great honor to serve your people.", "Here we proofread the communications of our brethren so as to look for errors or other misspeaks that could cause any sort of embarrassment.", 
         "Look at the conveyor below you. Here you will see letters from your brethren.", "Click on a letter to mark it for removal.", 
         "Let us practice once to make sure you understood my directions." };
@@ -28,11 +28,13 @@ public class TextWriter : MonoBehaviour
         "Now it is time for you to proofread works from your brothers.", 
         "Remember to mark any letters which would speak ill of The Party for destruction, lest they embarrass your comrades."};
     public List<string> wave2Text = new List<string> { "Comrade you are becoming extremely efficient at sorting the letters of our people.",
-    "I have just received word from the people’s capital that we are no longer doing business with our comrades in the pacific.",
-    "As a result, bananas are no longer being rationed by The Party.",
-    "Please make sure that none of our brothers are making a mistake by addressing these fruits.",
-    "And remember, comrade... Do not allow your errors to rise too high, we cannot have mistakes at the Ministry of Communication!"};
-
+        "I have just received word from the people’s capital that we are no longer doing business with our comrades in the pacific.",
+        "As a result, bananas are no longer being rationed by The Party.",
+        "Please make sure that none of our brothers are making a mistake by addressing these fruits.",
+        "And remember, comrade... Do not allow your errors to rise too high, we cannot have mistakes at the Ministry of Communication!"};
+    public List<string> wave3Text = new List<string> { "Comrade, do not falter. I have just recieved another word from the capital.",
+        "War has finally broken out with our greatest enemies in the east; China.",
+        "We all must make sacrifices to defeat our foes. Surely you will help sort out letters from any who will not stand up to our enemy."};
     private  int currentlyDisplayingText = 0;
     void Awake()
     {
@@ -42,9 +44,7 @@ public class TextWriter : MonoBehaviour
     public void SkipToNextText()
     {
         StopAllCoroutines();
-        currentlyDisplayingText++;
-        //If we've reached the end of the array, do anything you want. I just restart the example text
-        
+        currentlyDisplayingText++;        
         if (currentlyDisplayingText < textToPrint.Count)
         {
             //as the button is pressed, go through the array of strings
@@ -95,6 +95,15 @@ public class TextWriter : MonoBehaviour
             textToPrint.Clear();
             textToPrint = wave2Text;
             textUI.SetActive(true);
+            currentlyDisplayingText = 0;
+            StartCoroutine(AnimateText(textToPrint));
+        }
+        else if (currentWave == 3)
+        {
+            textToPrint.Clear();
+            textToPrint = wave3Text;
+            textUI.SetActive(true);
+            currentlyDisplayingText = 0;
             StartCoroutine(AnimateText(textToPrint));
         }
         else
