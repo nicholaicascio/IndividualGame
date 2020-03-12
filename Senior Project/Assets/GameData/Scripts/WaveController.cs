@@ -50,8 +50,12 @@ public class WaveController : MonoBehaviour
             tWriter.WriteNextText(currentWave);
             //tell textwriter to write some text and play creepyface
             //when textwriter is done it should call generate next wave
-            
         }
+        else if(currentWave == 10)
+        {
+            tWriter.EndGame();
+        }
+        
 
     }
 

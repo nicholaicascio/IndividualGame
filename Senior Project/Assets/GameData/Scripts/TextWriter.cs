@@ -8,6 +8,7 @@ public class TextWriter : MonoBehaviour
 {
     //this float is how many seconds between printing a character
     [SerializeField] private float secondsBetween = 0.03f;
+    public Animator endGameText;
     //this is the box where we will display the text to the user
     public Text textBox;
     public GameObject textUI;
@@ -19,6 +20,7 @@ public class TextWriter : MonoBehaviour
     public VideoClip faceClip;
     public VideoClip planetClip;
     public VideoClip fogClip;
+    private bool gameOver = false;
     //Store all your text in this string array
     public List<string> textToPrint = new List<string> { "Welcome to your first day at the Ministry of Communication.", 
         "It is a great honor to serve your people.", 
@@ -33,7 +35,7 @@ public class TextWriter : MonoBehaviour
         "I have just received word from the people’s capital that we are no longer doing business with our comrades in the pacific.",
         "As a result, bananas are no longer being rationed by The Party.",
         "Please make sure that none of our brothers are making a mistake by addressing these fruits.",
-        "And remember, comrade... Do not allow your errors to rise too high, we cannot have mistakes at the Ministry of Communication!"};
+        "And remember, comrade. Do not allow your errors to rise too high, we cannot have mistakes at the Ministry of Communication!"};
     public List<string> wave3Text = new List<string> { "Comrade, do not falter. I have just recieved another word from the capital.",
         "War has finally broken out with our greatest enemies in the east; China.",
         "We all must make sacrifices to defeat our foes. Surely you will help sort out letters from any who will not stand up to our enemy."};
@@ -52,8 +54,8 @@ public class TextWriter : MonoBehaviour
         "There seems to be some sort of miscommunication and many of our brethren think we are at war with China.", 
         "We are at war with The United States, as always.", 
         "Make sure these messages supporting The States are filtered out." };
-    public List<string> wave11Text = new List<string> { "Comrade you have served your country well.", 
-        "The party has found that your position is no longer needed.", 
+    public List<string> wave11Text = new List<string> { "Comrade you have served your country well.",
+        "The party has found that your position is no longer needed.",
         "You will be moved to the western front to fight for your motherland." };
     private  int currentlyDisplayingText = 0;
     void Awake()
@@ -74,8 +76,18 @@ public class TextWriter : MonoBehaviour
         {
             //if we are at the end of the array do this.
             currentlyDisplayingText = 0;
+            if(gameOver == true)
+            {
+                Debug.Log("end of game");
+                endGameText.SetBool("GameOver", true);
+                GameObject[] DisableThese = GameObject.FindGameObjectsWithTag("DisableForEndGame");
+                foreach(GameObject obj in DisableThese)
+                {
+                    obj.SetActive(false);
+                }
+            }
             //if wcontroller.currentwave > 0 we want to call wcontroller.GenerateNextWave() instead
-            if(wcontroller.currentWave > 0)
+            else if(wcontroller.currentWave > 0)
             {
                 wcontroller.GenerateNextWave();
             }
@@ -98,6 +110,16 @@ public class TextWriter : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+        textToPrint.Clear();
+        textToPrint = wave11Text;
+        currentlyDisplayingText = 0;
+        textUI.SetActive(true);
+        StartCoroutine(AnimateText(textToPrint));
+        gameOver = true;
+    }
+
     public void WriteNextText(int currentWave)
     {
         //this sets the text ui to display the proper text instructions associted with the current wave
@@ -105,6 +127,7 @@ public class TextWriter : MonoBehaviour
         {
             textToPrint.Clear();
             textToPrint = wave1Text;
+            currentlyDisplayingText = 0;
             textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
@@ -112,56 +135,48 @@ public class TextWriter : MonoBehaviour
         {
             textToPrint.Clear();
             textToPrint = wave2Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
+            textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
         else if (currentWave == 3)
         {
             textToPrint.Clear();
             textToPrint = wave3Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
+            textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
         else if (currentWave == 4)
         {
             textToPrint.Clear();
             textToPrint = wave4Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
+            textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
         else if (currentWave == 6)
         {
             textToPrint.Clear();
             textToPrint = wave6Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
+            textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
         else if (currentWave == 7)
         {
             textToPrint.Clear();
             textToPrint = wave7Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
+            textUI.SetActive(true);
             StartCoroutine(AnimateText(textToPrint));
         }
         else if (currentWave == 8)
         {
             textToPrint.Clear();
             textToPrint = wave8Text;
-            textUI.SetActive(true);
             currentlyDisplayingText = 0;
-            StartCoroutine(AnimateText(textToPrint));
-        }
-        else if (currentWave == 11)
-        {
-            textToPrint.Clear();
-            textToPrint = wave11Text;
             textUI.SetActive(true);
-            currentlyDisplayingText = 0;
             StartCoroutine(AnimateText(textToPrint));
         }
         else
