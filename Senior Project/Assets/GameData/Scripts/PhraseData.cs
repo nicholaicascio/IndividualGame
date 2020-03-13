@@ -11,9 +11,8 @@ public class PhraseData : MonoBehaviour
     Quote quote3;
     void Awake()
     {
-
         Quote quote0 = new Quote();
-        quote0.text = "I love the government";
+        quote0.text = "I love The Party";
         quote0.badOnWave[0] = false;
         quote0.badOnWave[1] = false;
         quote0.badOnWave[2] = false;
@@ -28,7 +27,7 @@ public class PhraseData : MonoBehaviour
         quotes.Add(quote0);
 
         Quote quote1 = new Quote();
-        quote1.text = "I hate the government";
+        quote1.text = "I hate The Party";
         quote1.badOnWave[0] = true;
         quote1.badOnWave[1] = true;
         quote1.badOnWave[2] = true;
@@ -45,16 +44,16 @@ public class PhraseData : MonoBehaviour
         Quote quote2 = new Quote();
         quote2.text = "I like bananas";
         quote2.badOnWave[0] = false;
-        quote2.badOnWave[1] = true;
-        quote2.badOnWave[2] = true;
+        quote2.badOnWave[1] = false;
+        quote2.badOnWave[2] = false;
         quote2.badOnWave[3] = true;
         quote2.badOnWave[4] = true;
         quote2.badOnWave[5] = true;
-        quote2.badOnWave[6] = true;
-        quote2.badOnWave[7] = true;
-        quote2.badOnWave[8] = true;
-        quote2.badOnWave[9] = true;
-        quote2.badOnWave[10] = true;
+        quote2.badOnWave[6] = false;
+        quote2.badOnWave[7] = false;
+        quote2.badOnWave[8] = false;
+        quote2.badOnWave[9] = false;
+        quote2.badOnWave[10] = false;
         quotes.Add(quote2);
 
         Quote quote3 = new Quote();
@@ -63,19 +62,193 @@ public class PhraseData : MonoBehaviour
         quote3.badOnWave[1] = false;
         quote3.badOnWave[2] = false;
         quote3.badOnWave[3] = false;
-        quote3.badOnWave[4] = true;
-        quote3.badOnWave[5] = true;
-        quote3.badOnWave[6] = true;
-        quote3.badOnWave[7] = true;
-        quote3.badOnWave[8] = true;
-        quote3.badOnWave[9] = true;
-        quote3.badOnWave[10] = true;
+        quote3.badOnWave[4] = false;
+        quote3.badOnWave[5] = false;
+        quote3.badOnWave[6] = false;
+        quote3.badOnWave[7] = false;
+        quote3.badOnWave[8] = false;
+        quote3.badOnWave[9] = false;
+        quote3.badOnWave[10] = false;
         quotes.Add(quote3);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Quote quote4 = new Quote();
+        quote4.text = "I hate China, always meddling in our business.";
+        quote4.badOnWave[0] = false;
+        quote4.badOnWave[1] = false;
+        quote4.badOnWave[2] = false;
+        quote4.badOnWave[3] = true;
+        quote4.badOnWave[4] = true;
+        quote4.badOnWave[5] = true;
+        quote4.badOnWave[6] = true;
+        quote4.badOnWave[7] = true;
+        quote4.badOnWave[8] = false;
+        quote4.badOnWave[9] = false;
+        quote4.badOnWave[10] = false;
+        quotes.Add(quote4);
+
+        Quote quote5 = new Quote();
+        quote5.text = "The United States is the worst, we should really put sanctions on them.";
+        quote5.badOnWave[0] = false;
+        quote5.badOnWave[1] = false;
+        quote5.badOnWave[2] = false;
+        quote5.badOnWave[3] = false;
+        quote5.badOnWave[4] = false;
+        quote5.badOnWave[5] = false;
+        quote5.badOnWave[6] = false;
+        quote5.badOnWave[7] = false;
+        quote5.badOnWave[8] = true;
+        quote5.badOnWave[9] = true;
+        quote5.badOnWave[10] = true;
+        quotes.Add(quote5);
+
+        Quote quote6 = new Quote();
+        quote6.text = "Fuck the government! Freedom!";
+        quote6.badOnWave[0] = true;
+        quote6.badOnWave[1] = true;
+        quote6.badOnWave[2] = true;
+        quote6.badOnWave[3] = true;
+        quote6.badOnWave[4] = true;
+        quote6.badOnWave[5] = true;
+        quote6.badOnWave[6] = true;
+        quote6.badOnWave[7] = true;
+        quote6.badOnWave[8] = true;
+        quote6.badOnWave[9] = true;
+        quote6.badOnWave[10] = true;
+        quotes.Add(quote6);
+
+        Quote quote7 = new Quote();
+        quote7.text = "The Party is the truth. Anyone who stands against them is a traitor and should be reported to the Thought Police.";
+        quote7.badOnWave[0] = false;
+        quote7.badOnWave[1] = false;
+        quote7.badOnWave[2] = false;
+        quote7.badOnWave[3] = false;
+        quote7.badOnWave[4] = false;
+        quote7.badOnWave[5] = false;
+        quote7.badOnWave[6] = false;
+        quote7.badOnWave[7] = false;
+        quote7.badOnWave[8] = false;
+        quote7.badOnWave[9] = false;
+        quote7.badOnWave[10] = false;
+        quotes.Add(quote7);
+
+        Quote quote8 = new Quote();
+        quote8.text = "I think someone else should run this country instead of The Party.";
+        quote8.badOnWave[0] = true;
+        quote8.badOnWave[1] = true;
+        quote8.badOnWave[2] = true;
+        quote8.badOnWave[3] = true;
+        quote8.badOnWave[4] = true;
+        quote8.badOnWave[5] = true;
+        quote8.badOnWave[6] = true;
+        quote8.badOnWave[7] = true;
+        quote8.badOnWave[8] = true;
+        quote8.badOnWave[9] = true;
+        quote8.badOnWave[10] = true;
+        quotes.Add(quote8);
+
+        Quote quote9 = new Quote();
+        quote9.text = "Leon is a traitor to our cause!";
+        quote9.badOnWave[0] = true;
+        quote9.badOnWave[1] = true;
+        quote9.badOnWave[2] = true;
+        quote9.badOnWave[3] = true;
+        quote9.badOnWave[4] = false;
+        quote9.badOnWave[5] = false;
+        quote9.badOnWave[6] = false;
+        quote9.badOnWave[7] = false;
+        quote9.badOnWave[8] = false;
+        quote9.badOnWave[9] = false;
+        quote9.badOnWave[10] = false;
+        quotes.Add(quote9);
+
+        Quote quote10 = new Quote();
+        quote10.text = "Why aren't there any bananas lately?";
+        quote10.badOnWave[0] = false;
+        quote10.badOnWave[1] = false;
+        quote10.badOnWave[2] = true;
+        quote10.badOnWave[3] = true;
+        quote10.badOnWave[4] = true;
+        quote10.badOnWave[5] = true;
+        quote10.badOnWave[6] = false;
+        quote10.badOnWave[7] = false;
+        quote10.badOnWave[8] = false;
+        quote10.badOnWave[9] = false;
+        quote10.badOnWave[10] = false;
+        quotes.Add(quote10);
+
+        Quote quote11 = new Quote();
+        quote11.text = "The Party should give us freedom of speech.";
+        quote11.badOnWave[0] = false;
+        quote11.badOnWave[1] = false;
+        quote11.badOnWave[2] = false;
+        quote11.badOnWave[3] = false;
+        quote11.badOnWave[4] = false;
+        quote11.badOnWave[5] = false;
+        quote11.badOnWave[6] = false;
+        quote11.badOnWave[7] = true;
+        quote11.badOnWave[8] = true;
+        quote11.badOnWave[9] = true;
+        quote11.badOnWave[10] = true;
+        quotes.Add(quote11);
+
+        Quote quote12 = new Quote();
+        quote12.text = "Free speech is a basic human right.";
+        quote12.badOnWave[0] = false;
+        quote12.badOnWave[1] = false;
+        quote12.badOnWave[2] = false;
+        quote12.badOnWave[3] = false;
+        quote12.badOnWave[4] = false;
+        quote12.badOnWave[5] = false;
+        quote12.badOnWave[6] = false;
+        quote12.badOnWave[7] = true;
+        quote12.badOnWave[8] = true;
+        quote12.badOnWave[9] = true;
+        quote12.badOnWave[10] = true;
+        quotes.Add(quote12);
+
+        Quote quote13 = new Quote();
+        quote13.text = "The United States is our greatest ally in this war.";
+        quote13.badOnWave[0] = false;
+        quote13.badOnWave[1] = false;
+        quote13.badOnWave[2] = false;
+        quote13.badOnWave[3] = false;
+        quote13.badOnWave[4] = false;
+        quote13.badOnWave[5] = false;
+        quote13.badOnWave[6] = false;
+        quote13.badOnWave[7] = false;
+        quote13.badOnWave[8] = true;
+        quote13.badOnWave[9] = true;
+        quote13.badOnWave[10] = true;
+        quotes.Add(quote13);
+
+        Quote quote14 = new Quote();
+        quote14.text = "We should vacation in The United States.";
+        quote14.badOnWave[0] = false;
+        quote14.badOnWave[1] = false;
+        quote14.badOnWave[2] = false;
+        quote14.badOnWave[3] = false;
+        quote14.badOnWave[4] = false;
+        quote14.badOnWave[5] = false;
+        quote14.badOnWave[6] = false;
+        quote14.badOnWave[7] = false;
+        quote14.badOnWave[8] = true;
+        quote14.badOnWave[9] = true;
+        quote14.badOnWave[10] = true;
+        quotes.Add(quote14);
+
+        Quote quote15 = new Quote();
+        quote15.text = "I heard conditions are much nicer in The United States than they are here.";
+        quote15.badOnWave[0] = false;
+        quote15.badOnWave[1] = false;
+        quote15.badOnWave[2] = false;
+        quote15.badOnWave[3] = false;
+        quote15.badOnWave[4] = false;
+        quote15.badOnWave[5] = false;
+        quote15.badOnWave[6] = false;
+        quote15.badOnWave[7] = false;
+        quote15.badOnWave[8] = true;
+        quote15.badOnWave[9] = true;
+        quote15.badOnWave[10] = true;
+        quotes.Add(quote15);
     }
 }
