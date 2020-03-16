@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Phrase : MonoBehaviour
 {
+    public Material clickedMat;
     public WaveController wave;
     public Transform target;
     public string status;
@@ -37,6 +38,7 @@ public class Phrase : MonoBehaviour
     public void clicked()
     {
         chosen = true;
+        this.GetComponent<Renderer>().material = clickedMat;
         if (status == "good")
         {
             wave.incorrectResponses++;

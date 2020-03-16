@@ -12,6 +12,10 @@ public class ConveyorController : MonoBehaviour
     public bool WaveOver = false;
     public int chanceOfBad = 5;
     public float timeBetween = 1f;
+    public Animator pressAnimator;
+    public GameObject fireLight;
+    public ParticleSystem fire;
+    public float fireSeconds = 1;
     public GameObject spawnPoint;
     public GameObject badPhrase;
     public GameObject goodPhrase;
@@ -21,6 +25,7 @@ public class ConveyorController : MonoBehaviour
     public Phrase lastPhrase;
     public WaveController wController;
     public WaveCreator creator;
+    
 
     //waveSize, chanceOfBad(out of ten. higher number means more likely), timeBetween(in seconds)
     //int[,] waveArray = new int[11, 3] { { 5, 5, 4 }, { 10, 1, 3 }, { 10, 2, 3 }, { 12, 3, 3 }, { 13, 5, 3 }, { 14, 5, 3 }, { 15, 3, 3 }, { 16, 2, 3 }, { 17, 2, 3 }, { 18, 1, 3 }, { 20, 0, 3 } };
@@ -50,6 +55,7 @@ public class ConveyorController : MonoBehaviour
                 if (wave[1] != null)
                 {
                     UpdateWave();
+                    
                 }
             }
         }
@@ -88,14 +94,6 @@ public class ConveyorController : MonoBehaviour
         //currentWave++;
     }
 
-    GameObject ReturnPhrase()
-    {
-        //this is an old method for generating a phrase
-        GameObject p = goodPhrase;
-        p.GetComponent<Phrase>().status = "good";
-        return Instantiate(p, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-    }
-
     void UpdateWave()
     {
         for (int i = 0; i < (wave.Length - 1); i++)
@@ -112,6 +110,7 @@ public class ConveyorController : MonoBehaviour
 
     void PullPhraseFromWave()
     {
+        
         if(phrases[10] != null)
         {
             if(phrases[9] != null)
@@ -124,6 +123,13 @@ public class ConveyorController : MonoBehaviour
                     wController.badMissed++;
                 }
                 lastPhrase = null;
+            }
+            //display effect that shows it has been incinerated (if it was marked by player)
+            if(phrases[10].GetComponent<Phrase>().chosen == true)
+            {
+                fireLight.SetActive(true);
+                fire.Play();
+                StartCoroutine(turnOffFire());
             }
             //actually destory the last one in the line
             Destroy(phrases[10]);
@@ -149,7 +155,22 @@ public class ConveyorController : MonoBehaviour
             //get the next-in-line card from wave and put it into phrases
             phrases[0] = wave[0];
             wave[0] = null;
+            pressAnimator.SetBool("Down", true);
+            StartCoroutine(SendPressBackUp());
         }
+        
+    }
+
+    IEnumerator SendPressBackUp()
+    {
+        yield return new WaitForSeconds(0.5f);
+        pressAnimator.SetBool("Down", false);
+    }
+    IEnumerator turnOffFire()
+    {
+        yield return new WaitForSeconds(fireSeconds);
+        fireLight.SetActive(false);
+        fire.Stop();
     }
 
     void MovePhrases()

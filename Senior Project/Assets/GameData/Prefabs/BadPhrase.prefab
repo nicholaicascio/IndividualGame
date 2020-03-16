@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bdc67e189024cae46954de41789d84fb, type: 2}
+  - {fileID: 2100000, guid: 9c3744ddf5bcb314fa85340373c3e32e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,9 +236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388c9708cde88744893ad81704b8668d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickedMat: {fileID: 2100000, guid: bdc67e189024cae46954de41789d84fb, type: 2}
   wave: {fileID: 0}
   target: {fileID: 0}
   status: 
+  chosen: 0
   smoothTime: 0.5
 --- !u!1 &8554098788091029579
 GameObject:
